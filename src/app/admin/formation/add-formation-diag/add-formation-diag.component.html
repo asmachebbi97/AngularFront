@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Ajouter une formation</h1>
+<div mat-dialog-content>
+
+
+    <mat-card fxFlex.gt-xs="150" class="mb15">
+       
+        
+          <form class="example-form" #f="ngForm" [formGroup]="Form">
+           
+            <mat-form-field class="example-full-width"> <input matInput placeholder="Sujet" formControlName="titre" ngModel required [(ngModel)]="formation.titre" >
+             </mat-form-field>               
+            <mat-form-field class="example-full-width"> <input matInput placeholder="Années"   type="number" formControlName="annee" ngModel required [(ngModel)]="formation.annee"> </mat-form-field>
+            <mat-form-field class="example-full-width"><input matInput placeholder="Duré" formControlName="duree" type="number" ngModel required [(ngModel)]="formation.duree" > </mat-form-field>
+            <mat-form-field class="example-full-width"> <input matInput placeholder="nombre de session"  formControlName="nb_session" type="number" ngModel required [(ngModel)]="formation.nb_session"> </mat-form-field>
+            <mat-form-field class="example-full-width"> <input matInput placeholder="Budget"  formControlName="budget" type="number" ngModel required [(ngModel)]="formation.budget"> </mat-form-field>
+            
+             
+
+            <mat-form-field class="example-full-width">
+              <mat-select placeholder="Type de formation" formControlName="typeF" ngModel required [(ngModel)]="formation.typeF" >
+              <mat-option value="international">Internationnal</mat-option>
+              <mat-option value="national">nationnal</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" *ngIf="domaines" >
+            <mat-select placeholder="Domaine" (selectionChange)="changeDomaine($event.value)" formControlName="Dom_domaine_id"  required   >
+            <mat-option  *ngFor="let D of domaines"   [value]="D.idDomaine">
+              {{D.libelle}}
+            </mat-option>
+            
+          </mat-select>
+        </mat-form-field>
+            
+          </form>
+       
+      </mat-card>
+
+
+
+
+
+  
+</div>
+<div mat-dialog-actions style="float:right;">
+  <button mat-fab color="primary" (click)="AddFormation()">ok</button>
+    <button  mat-dialog-close class mat-fab color="warn">Close</button>
+</div>
