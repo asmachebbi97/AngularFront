@@ -16,15 +16,15 @@
             
              
 
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="example-full-width" *ngIf="Types">
               <mat-select placeholder="Type de formation" formControlName="typeF" ngModel required [(ngModel)]="formation.typeF" >
-              <mat-option value="international">Internationnal</mat-option>
-              <mat-option value="national">nationnal</mat-option>
+              <mat-option *ngFor="let typ of Types" [value]="typ" > {{typ}}</mat-option>
+              
             </mat-select>
-          </mat-form-field>
+          </mat-form-field>  
 
           <mat-form-field class="example-full-width" *ngIf="domaines" >
-            <mat-select placeholder="Domaine" (selectionChange)="changeDomaine($event.value)" formControlName="Dom_domaine_id"  required   >
+            <mat-select placeholder="Domaine" (selectionChange)="changeDomaine($event.value)" formControlName="Dom_domaine_id"  required   [(ngModel)]="formation.Dom_domaine_id">
             <mat-option  *ngFor="let D of domaines"   [value]="D.idDomaine">
               {{D.libelle}}
             </mat-option>
@@ -44,5 +44,6 @@
 </div>
 <div mat-dialog-actions style="float:right;">
   <button mat-fab color="primary" (click)="AddFormation()">ok</button>
+  <button mat-fab  (click)="reset()">Reset</button>
     <button  mat-dialog-close class mat-fab color="warn">Close</button>
 </div>

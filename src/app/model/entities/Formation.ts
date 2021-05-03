@@ -1,3 +1,4 @@
+import {Domaine} from './Domaine'
 export class Formation {
 	IdFormation:number; 
      titre:  String ;
@@ -6,6 +7,12 @@ export class Formation {
 	 duree: number;
 	
     budget: number;
-	typeF:String;
+	typeF:TypeFormation;
+	Dom_domaine_id :number;
+	domaine: Domaine;
     
     }
+
+	export enum TypeFormation {
+		national ,international
+	  }

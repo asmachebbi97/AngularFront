@@ -11,8 +11,13 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddFormationDiagComponent } from '../add-formation-diag/add-formation-diag.component';
+import { ModifFormationDiagComponent } from '../modif-formation-diag/modif-formation-diag.component';
+
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-liste-formation',
@@ -20,14 +25,21 @@ import { MatDatepicker } from '@angular/material/datepicker';
   styleUrls: ['./liste-formation.component.scss']
 })
 export class ListeFormationComponent implements OnInit {
+  selectedRow:any;
   formations:Formation[]; 
-  displayedColumns = ['Sujet', 'Années', 'Nombre', 'Duré','action'];
+  displayedColumns = ['Sujet', 'Années', 'Nombre', 'duree','budget', 'typeF','domaine','action'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(router: Router, private route: ActivatedRoute, private formationservice:FormationService,private diag: MatDialog,) { }
+  constructor(private toastr: ToastrService,router: Router, private route: ActivatedRoute, private formationservice:FormationService,private diag: MatDialog,) { }
+
+
+
 
   ngOnInit() {
     this.GetListeFormation();
+    
+    
+   
   }
 
   GetListeFormation(){
@@ -35,10 +47,18 @@ export class ListeFormationComponent implements OnInit {
     .subscribe(data=>{this.formations=data;
     },err=>{
       console.log(err);
-    })
+    })}
 
 
-  }
+    Delete(){
+      
+      
+  
+    }
+
+  
+
+
   AddDialog() {
     
     const diagref = this.diag.open(AddFormationDiagComponent, {
@@ -46,13 +66,56 @@ export class ListeFormationComponent implements OnInit {
       height: 'auto',
      
       disableClose: true,
-    });
+    }) .afterClosed().subscribe((res => {
+      this.GetListeFormation();
+    }));;
+   
+    
+  }
+
+
+  ModifDialog(msg) {
+    const newMsg = Object.assign({}, msg);
+  console.log(msg);
+  
+
+    
+     const diagref = this.diag.open(ModifFormationDiagComponent, {
+      width: '650px',
+      height: 'auto',
+    data:{message:newMsg,
+    }
+    }).afterClosed().subscribe(result => {
+      if (result!=false) 
+      {  
+      this.formationservice.Put(result.message.idFormation,result.message).subscribe((data) => {
+        this.GetListeFormation();
+        this.toastr.success('Formation modifié avec succee!')
+      }, (error) => {
+        console.log(error);
+        this.toastr.error('erreur' );
+        
+
+      });
+    }
+    
+
+    
+  
+   
+
+
+    });;
+  
    
     
   }
   
-
+  
  
 
-
+  
 }
+
+
+

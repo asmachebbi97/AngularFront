@@ -56,6 +56,6 @@ export const childRoutes = [
       import('./formation/formation.module').then(
         m => m.FormationModule
       ),
-    data: { icon: 'place', text: 'formation' }
+    data: { icon: 'storage', text: 'formation' }
   }
 ];

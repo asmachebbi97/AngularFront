@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
+import { ToastrModule , ToastContainerModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,14 @@ import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker
     HttpClientModule,
     CoreModule,
     SharedModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    ToastrModule,
+    ToastrModule.forRoot({
+      timeOut:3000,
+      positionClass:'toast-top-right',
+      preventDuplicates:false
+     }),
+    ToastContainerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

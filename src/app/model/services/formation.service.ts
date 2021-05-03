@@ -21,12 +21,38 @@ export class FormationService {
   public GetAllFormation():Observable<Formation[]> {
     return this.http.get<[Formation]>(this.baseUrl + '/formation')
   }
+
+  public GetFormationById(idformation : any):Observable<Formation>  {
+    return this.http.get<Formation>(this.baseUrl + '/formationById/'+idformation)
+  }
+
+  public GetDomaineByFormation(id_formation : any) {
+    return this.http.get(this.baseUrl + '/DomaineByFormation/'+id_formation)
+  }
   
 
-  Post( id_Domaine:any ,F: Formation) {
+
+  public GetDomaineNameByFormation(id_formation : any) {
+    return this.http.get(this.baseUrl + '/DomaineNameByFormation/'+id_formation)
+  }
+
+
+
+  public GetTypeFormation(id_formation : any) {
+    return this.http.get(this.baseUrl + '/typeFormation/'+id_formation)
+  }
+
+  
+  public Post( id_Domaine:any ,F: Formation) {
     return this.http.post(this.baseUrl + '/addFormation/'+id_Domaine, F ); 
   }
    
- 
+ public Put(id_Domaine:any ,F: Formation) :Observable<Formation> {
+    return this.http.put<Formation>(this.baseUrl + '/FormationId/'+id_Domaine, F)
+  }
+
+ public Delete(id_Domaine:any ) {
+    return this.http.delete(this.baseUrl + '/addFormation/'+id_Domaine)
+  }
 
 }

@@ -28,7 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { ModifFormationDiagComponent } from './modif-formation-diag/modif-formation-diag.component';
+import { ToastrModule , ToastContainerModule} from 'ngx-toastr';
 @NgModule({
   imports: [
     CommonModule,
@@ -51,6 +52,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
+    ToastrModule , 
+    ToastContainerModule
     
  
 
@@ -59,6 +62,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     
  
   ],
-  declarations: [ListeFormationComponent, AddFormationDiagComponent,]
+  declarations: [ListeFormationComponent, AddFormationDiagComponent, ModifFormationDiagComponent,]
 })
 export class FormationModule {}

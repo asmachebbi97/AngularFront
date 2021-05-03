@@ -16,7 +16,7 @@ export class DomaineService {
   }
   
   
-  public GetAllFormation():Observable<Domaine[]> {
+  public GetAlldDomaine():Observable<Domaine[]> {
     return this.http.get<[Domaine]>(this.baseUrl + '/Domaines')
   }
   
