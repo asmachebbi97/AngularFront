@@ -21,4 +21,6 @@ export class TopNavComponent implements OnInit {
     localStorage.removeItem('isLoggedin');
     this.router.navigate(['/login']);
   }
+
+  
 }

@@ -18,6 +18,9 @@ import { MatDatepicker } from '@angular/material/datepicker';
 import { filter } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import { DomaineService } from 'src/app/model/services/domaine.service';
+import { Domaine } from 'src/app/model/entities/Domaine';
+
 
 @Component({
   selector: 'app-liste-formation',
@@ -26,29 +29,78 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListeFormationComponent implements OnInit {
   selectedRow:any;
-  formations:Formation[]; 
+  formations:Formation[];
+  domaine:any;
+  domaines:Domaine[]; 
+  idFormation:any;
+   libelle:any ; 
+  dataSource :MatTableDataSource<Formation>;
   displayedColumns = ['Sujet', 'Années', 'Nombre', 'duree','budget', 'typeF','domaine','action'];
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(private toastr: ToastrService,router: Router, private route: ActivatedRoute, private formationservice:FormationService,private diag: MatDialog,) { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  constructor(private domaineservice:DomaineService,private toastr: ToastrService,router: Router, private route: ActivatedRoute, private formationservice:FormationService,private diag: MatDialog,) { }
 
 
 
 
   ngOnInit() {
+    
     this.GetListeFormation();
-    
-    
    
+    
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+}
+  
+
   GetListeFormation(){
+    
     this.formationservice.GetAllFormation()
     .subscribe(data=>{this.formations=data;
+      data.map(item =>{  
+        
+
+        return {
+        ...item.Dom_domaine_id.valueOf,
+        }
+      })
+      
+      
+      this.dataSource = new MatTableDataSource(this.formations);
+       console.log(this.dataSource);
+     this.dataSource.paginator = this.paginator;
+      
+     
+
     },err=>{
       console.log(err);
     })}
 
+
+    GetDomaineName(id){
+      this.formationservice.GetDomaineNameByFormation(id)
+      .subscribe(data=>{this.libelle=data;
+      },err=>{
+        console.log(err);
+      })
+
+       
+      
+  }
+
+  GetDomaineObj(id){
+    this.formationservice.GetDomaineoObjByFormation(id)
+    .subscribe(data=>{this.domaine=data ;  console.log(this.domaine);
+    },err=>{
+      console.log(err);
+    })
+
+    return this.domaine;
+    
+}
 
     Delete(){
       

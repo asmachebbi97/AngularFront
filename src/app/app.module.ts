@@ -11,6 +11,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { ToastrModule , ToastContainerModule} from 'ngx-toastr';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -27,7 +28,8 @@ import { ToastrModule , ToastContainerModule} from 'ngx-toastr';
       positionClass:'toast-top-right',
       preventDuplicates:false
      }),
-    ToastContainerModule
+    ToastContainerModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

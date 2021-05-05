@@ -6,11 +6,13 @@
     [routerLink]="['/', item.path]"
   >
     <mat-icon class="sidenav-icon">{{ item.data.icon }}</mat-icon>
-    {{ item.data.text }}
+   <label style="color: #003366;">{{ item.data.text }}</label> 
   </a>
+ <!--
   <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['/blank-page']">
     <mat-icon class="sidenav-icon">insert_drive_file</mat-icon>Blank Page
   </a>
+
   <div class="nested-menu">
     <a mat-list-item (click)="showMenu = !showMenu">
       <mat-icon class="sidenav-icon">add</mat-icon>Menu
@@ -33,4 +35,5 @@
       </li>
     </ul>
   </div>
+-->
 </mat-nav-list>

@@ -30,10 +30,13 @@ export class FormationService {
     return this.http.get(this.baseUrl + '/DomaineByFormation/'+id_formation)
   }
   
+  public GetDomaineoObjByFormation(id_formation : any) {
+    return this.http.get(this.baseUrl + '/DomaineObjByFormation/'+id_formation)
+  }
+  
 
-
-  public GetDomaineNameByFormation(id_formation : any) {
-    return this.http.get(this.baseUrl + '/DomaineNameByFormation/'+id_formation)
+  public GetDomaineNameByFormation(id_formation : any):Observable<String> {
+    return this.http.get<String>(this.baseUrl + '/DomaineNameByFormation/'+id_formation)
   }
 
 
