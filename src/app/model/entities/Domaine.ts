@@ -1,6 +1,6 @@
 export class Domaine {
-    IdDomaine:number;
-    Libelle: String;
+    idDomaine:number;
+    libelle: string;
       
       
       }

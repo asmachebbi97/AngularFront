@@ -5,14 +5,28 @@
     <mat-card fxFlex.gt-xs="150" class="mb15">
        
         
-          <form class="example-form" #f="ngForm" [formGroup]="Form">
+          <form class="example-form" #f="ngForm" [formGroup]="Form" autocomplete="off" novalidate>
            
             <mat-form-field class="example-full-width"> <input matInput placeholder="Sujet" formControlName="titre" ngModel required [(ngModel)]="formation.titre" >
-             </mat-form-field>               
-            <mat-form-field class="example-full-width"> <input matInput placeholder="Années"   type="number" formControlName="annee" ngModel required [(ngModel)]="formation.annee"> </mat-form-field>
-            <mat-form-field class="example-full-width"><input matInput placeholder="Duré" formControlName="duree" type="number" ngModel required [(ngModel)]="formation.duree" > </mat-form-field>
-            <mat-form-field class="example-full-width"> <input matInput placeholder="nombre de session"  formControlName="nb_session" type="number" ngModel required [(ngModel)]="formation.nb_session"> </mat-form-field>
-            <mat-form-field class="example-full-width"> <input matInput placeholder="Budget"  formControlName="budget" type="number" ngModel required [(ngModel)]="formation.budget"> </mat-form-field>
+              <mat-error *ngIf="hasError('titre', 'required')">titre est obligatoire</mat-error>
+
+            </mat-form-field>               
+           
+           <mat-form-field class="example-full-width"> <input matInput placeholder="Années"   type="number" formControlName="annee" ngModel required [(ngModel)]="formation.annee"> 
+            <mat-error *ngIf="hasError('annee', 'required')">annee est obligatoire</mat-error>
+          </mat-form-field>
+
+            <mat-form-field class="example-full-width"><input matInput placeholder="Duré" formControlName="duree" type="number" ngModel required [(ngModel)]="formation.duree" > 
+              <mat-error *ngIf="hasError('duree', 'required')">duree est obligatoire</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width"> <input matInput placeholder="nombre de session"  formControlName="nb_session" type="number" ngModel required [(ngModel)]="formation.nb_session">
+              <mat-error *ngIf="hasError('nb_session', 'required')">nb_session est obligatoire</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width"> <input matInput placeholder="Budget"  formControlName="budget" type="number" ngModel required [(ngModel)]="formation.budget">
+               <mat-error *ngIf="hasError('budget', 'required')">budget est obligatoire</mat-error>
+            </mat-form-field>
             
              
 
@@ -21,6 +35,8 @@
               <mat-option *ngFor="let typ of Types" [value]="typ" > {{typ}}</mat-option>
               
             </mat-select>
+            <mat-error *ngIf="hasError('typeF', 'required')">typeF est obligatoire</mat-error>
+
           </mat-form-field>  
 
           <mat-form-field class="example-full-width" *ngIf="domaines" >
@@ -30,6 +46,8 @@
             </mat-option>
             
           </mat-select>
+          <mat-error *ngIf="hasError('Dom_domaine_id', 'required')">Domaine est obligatoire</mat-error>
+
         </mat-form-field>
             
           </form>
@@ -43,7 +61,7 @@
   
 </div>
 <div mat-dialog-actions style="float:right;">
-  <button mat-raised-button  style="background-color:#003366;color:white;" (click)="AddFormation()">ok</button>
+  <button mat-raised-button  style="background-color:#003366;color:white;" (click)="AddFormation()" [disabled]="!Form.valid" >ok</button>
   <button mat-raised-button  style="background-color:#e28743;;color:white;"(click)="reset()">Reset</button>
     <button  mat-dialog-close class mat-raised-button style="background-color:#eeeee4;color:black;">Close</button>
 </div>

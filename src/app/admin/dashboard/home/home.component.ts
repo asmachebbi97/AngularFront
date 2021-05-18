@@ -19,28 +19,27 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.places = [
       {
-        imgSrc: 'assets/images/card-1.jpg',
-        name: 'Cozy 5 Stars Apartment',
-        description: `The place is close to Barceloneta Beach and bus stop just 2 min by walk and near to "Naviglio"
-              where you can enjoy the main night life in Barcelona.`,
-        charge: '$899/night',
-        location: 'Barcelona, Spain'
+        imgSrc: 'assets/images/im1.jpg',
+        name: 'Bureaux de travail',
+        description: `Environnement de travail agréable et collectif
+        Idéal pour les sociétés cherchant à élargir leur réseau`,
+        charge: '',
+        location: ''
       },
       {
-        imgSrc: 'assets/images/card-2.jpg',
-        name: 'Office Studio',
-        description: `The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio"
-              where you can enjoy the night life in London, UK.`,
-        charge: '$1,119/night',
-        location: 'London, UK'
+        imgSrc: 'assets/images/im2.jpg',
+        name: 'Équipements et services',
+        description: `Une cuisine commune où vous pourrez faire du thé et du café
+        Salles de réunion disponibles à la location sur base horaire.`,
+        charge: '',
+        location: ''
       },
       {
-        imgSrc: 'assets/images/card-3.jpg',
-        name: 'Beautiful Castle',
-        description: `The place is close to Metro Station and bus stop just 2 min by walk and near to "Naviglio"
-              where you can enjoy the main night life in Milan.`,
-        charge: '$459/night',
-        location: 'Milan, Italy'
+        imgSrc: 'assets/images/im3.jpg',
+        name: 'Espace de travail collaboratif',
+        description: `Selon le forfait que vous choisissez, bénéficiez d'un espace de travail hautement équipé, comprenant services, mobilier, internet haut-débit et personnel de réception.`,
+        charge: '',
+        location: ''
       }
     ];
   }

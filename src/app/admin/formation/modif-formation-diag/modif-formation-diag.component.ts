@@ -64,8 +64,9 @@ export class ModifFormationDiagComponent implements OnInit {
 
     
     this.titre.setValue(this.data.message.titre); 
+
     //set the value of domaine by geting the id domaine selon el idFormation //
-    this.GetDomaine();
+   // this.GetDomaine();
   }
   
   
@@ -122,6 +123,10 @@ update() {
     this.router.navigateByUrl("formation").then(() => {
       window.location.reload();
     });; 
+  }
+
+  public hasError = (controlName: string, errorName: string) =>{
+    return this.Form.controls[controlName].hasError(errorName);
   }
 
 }

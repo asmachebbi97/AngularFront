@@ -30,6 +30,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ModifFormationDiagComponent } from './modif-formation-diag/modif-formation-diag.component';
 import { ToastrModule , ToastContainerModule} from 'ngx-toastr';
+import { SessionComponent } from './session/session.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ParticipantComponent } from './participant/participant.component';
+import { AddSessionComponent } from './add-session/add-session.component';
+import { UpdateSessionComponent } from './update-session/update-session.component';
+import { AddparticipantComponent } from './addparticipant/addparticipant.component';
+import { UpdparticipantComponent } from './updparticipant/updparticipant.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -53,7 +60,9 @@ import { ToastrModule , ToastContainerModule} from 'ngx-toastr';
     MatSelectModule,
     ReactiveFormsModule,
     ToastrModule , 
-    ToastContainerModule
+    ToastContainerModule,
+    MatExpansionModule,
+    MatNativeDateModule,
     
  
 
@@ -62,6 +71,6 @@ import { ToastrModule , ToastContainerModule} from 'ngx-toastr';
     
  
   ],
-  declarations: [ListeFormationComponent, AddFormationDiagComponent, ModifFormationDiagComponent,]
+  declarations: [ListeFormationComponent, AddFormationDiagComponent, ModifFormationDiagComponent, SessionComponent, ParticipantComponent, AddSessionComponent, UpdateSessionComponent, AddparticipantComponent, UpdparticipantComponent,]
 })
 export class FormationModule {}

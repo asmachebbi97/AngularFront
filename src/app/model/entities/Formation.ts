@@ -1,6 +1,7 @@
 import {Domaine} from './Domaine'
+import {Session_de_Formations} from './Session_de_Formations'
 export class Formation {
-	IdFormation:number; 
+	idFormation:number; 
      titre:  String ;
 	 annee: number;
 	nb_session: number;
@@ -8,8 +9,9 @@ export class Formation {
 	
     budget: number;
 	typeF:TypeFormation;
-	Dom_domaine_id :number;
-	domaine: Domaine;
+	dom : Domaine ;
+	Dom_domaine_id: number ; 
+	session_de_Formations : Session_de_Formations ; 
     
     }
 

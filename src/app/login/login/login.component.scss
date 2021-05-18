@@ -19,8 +19,6 @@
     .login-form {
       padding: 40px;
       background: $white;
-      float: center;
-     
       max-width: 500px;
       box-shadow: 0 0 20px #ddd;
       input:-webkit-autofill {
@@ -40,11 +38,18 @@
   }
   &:before {
     content: '';
-    background: #003366;
-    position: fixed;
+    background: $primary-color;
+    position: absolute;
     top: 50%;
     left: 0;
     bottom: 0;
     right: 0;
   }
+}
+
+.ab{
+  color : "primary";
+}
+.abb{
+  background : "primary";
 }

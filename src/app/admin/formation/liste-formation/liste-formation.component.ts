@@ -20,6 +20,7 @@ import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { DomaineService } from 'src/app/model/services/domaine.service';
 import { Domaine } from 'src/app/model/entities/Domaine';
+import { SessionComponent } from '../session/session.component';
 
 
 @Component({
@@ -27,91 +28,53 @@ import { Domaine } from 'src/app/model/entities/Domaine';
   templateUrl: './liste-formation.component.html',
   styleUrls: ['./liste-formation.component.scss']
 })
-export class ListeFormationComponent implements OnInit {
+export class ListeFormationComponent implements OnInit,AfterViewInit {
   selectedRow:any;
   formations:Formation[];
   domaine:any;
   domaines:Domaine[]; 
   idFormation:any;
    libelle:any ; 
-  dataSource :MatTableDataSource<Formation>;
+   
+   public dataSource= new  MatTableDataSource<Formation>();
   displayedColumns = ['Sujet', 'Années', 'Nombre', 'duree','budget', 'typeF','domaine','action'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private domaineservice:DomaineService,private toastr: ToastrService,router: Router, private route: ActivatedRoute, private formationservice:FormationService,private diag: MatDialog,) { }
 
 
-
+  constructor(private domaineservice:DomaineService,private toastr: ToastrService,private router: Router,  private route: ActivatedRoute, private formationservice:FormationService,private diag: MatDialog,) { }
 
   ngOnInit() {
-    
     this.GetListeFormation();
-   
-    
   }
 
-  ngAfterViewInit() {
+
+  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-}
+  }
+  
+  public customSort = (event) => {
+    console.log(event);
+  }
   
 
+  public doFilter = (value: string) => {
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
+  }
+
+  
   GetListeFormation(){
     
     this.formationservice.GetAllFormation()
     .subscribe(data=>{this.formations=data;
-      data.map(item =>{  
-        
-
-        return {
-        ...item.Dom_domaine_id.valueOf,
-        }
-      })
-      
-      
-      this.dataSource = new MatTableDataSource(this.formations);
-       console.log(this.dataSource);
-     this.dataSource.paginator = this.paginator;
-      
-     
-
-    },err=>{
+      this.dataSource.data = this.formations as Formation[];
+       },err=>{
       console.log(err);
     })}
 
 
-    GetDomaineName(id){
-      this.formationservice.GetDomaineNameByFormation(id)
-      .subscribe(data=>{this.libelle=data;
-      },err=>{
-        console.log(err);
-      })
-
-       
-      
-  }
-
-  GetDomaineObj(id){
-    this.formationservice.GetDomaineoObjByFormation(id)
-    .subscribe(data=>{this.domaine=data ;  console.log(this.domaine);
-    },err=>{
-      console.log(err);
-    })
-
-    return this.domaine;
-    
-}
-
-    Delete(){
-      
-      
-  
-    }
-
-  
-
-
-  AddDialog() {
+   AddDialog() {
     
     const diagref = this.diag.open(AddFormationDiagComponent, {
       width: '650px',
@@ -129,9 +92,6 @@ export class ListeFormationComponent implements OnInit {
   ModifDialog(msg) {
     const newMsg = Object.assign({}, msg);
   console.log(msg);
-  
-
-    
      const diagref = this.diag.open(ModifFormationDiagComponent, {
       width: '650px',
       height: 'auto',
@@ -150,24 +110,50 @@ export class ListeFormationComponent implements OnInit {
 
       });
     }
-    
-
-    
-  
-   
-
-
     });;
-  
-   
-    
   }
   
   
- 
+ Session(msg){
 
-  
+  const newMsg = Object.assign({}, msg);
+  console.log(msg);
+     const diagref = this.diag.open(SessionComponent, {
+      width: '100%',
+      height: 'auto',
+    data:{message:newMsg,
+    }
+    });
+
+
+    
+
+
 }
+
+
+Delete( id:number)
+{
+  this.formationservice.Delete(id).subscribe(result => {
+     
+   this.GetListeFormation(); 
+      this.toastr.success('formation supprimé avec succee!')
+    }, (error) => {
+      console.log(error);
+      this.toastr.error("erreur ! cette formation à des session ! les supprimez  d'abord" );
+      
+
+    });
+}
+
+
+
+}
+
+
+
+
+
 
 
 

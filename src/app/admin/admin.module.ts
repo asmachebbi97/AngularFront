@@ -13,8 +13,9 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { LayoutComponent } from './layout/layout.component';
 import { TopNavComponent } from './layout/top-nav/top-nav.component';
 import { SideNavComponent } from './layout/side-nav/side-nav.component';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrModule , ToastContainerModule} from 'ngx-toastr';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -26,6 +27,7 @@ import { ToastrModule , ToastContainerModule} from 'ngx-toastr';
     MatInputModule,
     MatMenuModule,
     MatListModule,
+    FormsModule,
     ToastrModule.forRoot({
      timeOut:500,
      positionClass:'toast-top-right',
@@ -36,6 +38,6 @@ import { ToastrModule , ToastContainerModule} from 'ngx-toastr';
   
   
   ],
-  declarations: [LayoutComponent, TopNavComponent, SideNavComponent]
+  declarations: [LayoutComponent, TopNavComponent, SideNavComponent ]
 })
 export class AdminModule {}

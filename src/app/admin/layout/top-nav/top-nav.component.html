@@ -2,34 +2,30 @@
   <button type="button" mat-icon-button class="visible-md" (click)="toggleSidebar()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
-  <div class="nav-brand">
-    Centre de Formation
+  <div class="nav-brand"  >
+    Centre de Formation  
   </div>
   <span class="nav-spacer"></span>
-  <form class="hidden-sm" style="margin-right: 20px; margin-top: 8px">
-    <mat-form-field style="font-size: 1rem;">
-      <input matInput placeholder="Search">
-    </mat-form-field>
-  </form>
+ 
   
-  <button class="hidden-sm" mat-icon-button [matMenuTriggerFor]="profile">
-    <mat-icon>account_circle</mat-icon>
-  </button>
+  <button class="hidden-sm" mat-icon-button style="margin-right: 12%;margin-top: -0.5%;" [matMenuTriggerFor]="profile">
+    <img  [matMenuTriggerFor]="profile" alt="Avatar" class="img-fluid rounded-circle mb-2" src="{{ currentUser.image }}" width="50px" height="50px" style=" border-radius: 50%;margin-right: 1%; "> 
+    <label style="text-align: center;margin-left: 35%;margin-top: 2%;">{{ currentUser.username }}</label> 
+    <label style="text-align: center;margin-left: 35%;margin-top: 2%;">{{ currentUser.fname }}</label> 
+    <label style="text-align: center;margin-left: 35%;margin-top: 2%;">{{ currentUser.lname }}</label> 
+    </button>
+
   <mat-menu #profile="matMenu" [overlapTrigger]="false">
-    <button mat-menu-item>
-      <mat-icon>person</mat-icon>
-      <span>Profile</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>inbox</mat-icon>
-      <span>Inbox</span>
-    </button>
-    <button mat-menu-item>
+   <label style="text-align: center;margin-left: 35%;margin-top: 2%;">{{ currentUser.username }}</label> 
+    <button mat-menu-item >
       <mat-icon>settings</mat-icon>
       <span>Settings</span>
     </button>
   </mat-menu>
-  <button mat-icon-button (click)="onLoggedout()">
+
+
+  
+  <button mat-icon-button (click)="onLoggedout()" style="margin-right: 2%;">
     <mat-icon>exit_to_app</mat-icon>
   </button>
 

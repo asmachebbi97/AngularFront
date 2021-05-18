@@ -11,45 +11,25 @@ export const childRoutes = [
       import('./charts/charts.module').then(m => m.ChartsModule),
     data: { icon: 'bar_chart', text: 'Charts' }
   },
+  
   {
-    path: 'tables',
+    path: 'organisme',
     loadChildren: () =>
-      import('./tables/tables.module').then(m => m.TablesModule),
-    data: { icon: 'table_chart', text: 'Tables' }
-  },
-  {
-    path: 'forms',
-    loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule),
-    data: { icon: 'assignment', text: 'Forms' }
-  },
-  {
-    path: 'mat-grid',
-    loadChildren: () =>
-      import('./mat-grid/mat-grid.module').then(m => m.MatGridModule),
-    data: { icon: 'grid_on', text: 'Flex Grid' }
-  },
-  {
-    path: 'mat-components',
-    loadChildren: () =>
-      import('./mat-components/mat-components.module').then(
-        m => m.MatComponentsModule
+      import('./organisme/organisme.module').then(
+        m => m.OrganismeModule
       ),
-    data: { icon: 'code', text: 'Material Components' }
-  },
+    data: { icon: 'storage', text: 'Organisme' }
+  }, 
   {
-    path: 'animations',
+    path: 'domaine',
     loadChildren: () =>
-      import('./animations/animations.module').then(m => m.AnimationsModule),
-    data: { icon: 'perm_media', text: 'Animations' }
-  },
-  {
-    path: 'google-maps',
-    loadChildren: () =>
-      import('./google-map-demo/google-map-demo.module').then(
-        m => m.GoogleMapDemoModule
+      import('./domaine/domaine.module').then(
+        m => m.DomaineModule
       ),
-    data: { icon: 'place', text: 'Google Maps' }
-  },
+    data: { icon: 'storage', text: 'Domaine' }
+  }, 
+  
+ 
   {
     path: 'formation',
     loadChildren: () =>
@@ -57,5 +37,30 @@ export const childRoutes = [
         m => m.FormationModule
       ),
     data: { icon: 'storage', text: 'formation' }
+  }
+  , 
+  {
+    path: 'Profil',
+    loadChildren: () =>
+      import('./profil/profil.module').then(
+        m => m.ProfilModule
+      ),
+    data: { icon: 'code', text: 'Profils' }
+  },
+  {
+    path: 'Pays',
+    loadChildren: () =>
+      import('./pay/pay.module').then(
+        m => m.PayModule
+      ),
+    data: { icon: 'language', text: 'Pays' }
+  },
+  {
+    path: 'formateur',
+    loadChildren: () =>
+      import('./formateur/formateur.module').then(
+        m => m.FormateurModule
+      ),
+    data: { icon: 'perm_identity', text: 'Formateurs' }
   }
 ];

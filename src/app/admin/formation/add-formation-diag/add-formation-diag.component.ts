@@ -98,15 +98,6 @@ AddFormation() {
   closeDialog() {
     this.dialogRef.close(false);
    
-    
-
-    
-  
-    
-    
-    
- 
-  
   }
 
  
@@ -125,7 +116,10 @@ AddFormation() {
 }
 
   
-  
+public hasError = (controlName: string, errorName: string) =>{
+  return this.Form.controls[controlName].hasError(errorName);
+}
+
 
 
 }

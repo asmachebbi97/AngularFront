@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Formation } from '../entities/Formation';
 import { Observable } from 'rxjs';
 import { HttpClientModule } from "@angular/common/http";
+import { Session_de_Formations } from '../entities/Session_de_Formations';
 
 
 
@@ -40,6 +41,11 @@ export class FormationService {
   }
 
 
+  public GetSessionByFormation(id : any):Observable<Session_de_Formations[]> {
+    return this.http.get<[Session_de_Formations]>(this.baseUrl + '/FormationSession/'+id)
+  }
+
+
 
   public GetTypeFormation(id_formation : any) {
     return this.http.get(this.baseUrl + '/typeFormation/'+id_formation)
@@ -50,12 +56,12 @@ export class FormationService {
     return this.http.post(this.baseUrl + '/addFormation/'+id_Domaine, F ); 
   }
    
- public Put(id_Domaine:any ,F: Formation) :Observable<Formation> {
-    return this.http.put<Formation>(this.baseUrl + '/FormationId/'+id_Domaine, F)
+ public Put(idf:any ,F: Formation) :Observable<Formation> {
+    return this.http.put<Formation>(this.baseUrl + '/FormationId/'+idf, F)
   }
 
  public Delete(id_Domaine:any ) {
-    return this.http.delete(this.baseUrl + '/addFormation/'+id_Domaine)
+    return this.http.delete(this.baseUrl + '/Formation/'+id_Domaine )
   }
 
 }
